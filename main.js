@@ -7,7 +7,7 @@ const { app, BrowserWindow, nativeTheme, Menu, shell } = require('electron/main'
 let win
 const createWindow = () => {
     // definindo o tema da janela claro ou escuro
-    nativeTheme.themeSource = 'light'
+    nativeTheme.themeSource = 'dark'
     win = new BrowserWindow({
         width: 1010,
         height: 720,
@@ -74,19 +74,23 @@ app.commandLine.appendSwitch('log-level', '3')
 // template do menu
 const template = [
     {
-        label: 'Notas',
+        label: 'Cadastro',
         submenu: [
-            {
-                label: 'Criar nota',
-                accelerator: 'Ctrl+N',
-            },
-            {
-                type: 'separator'
-            },
             {
                 label: 'Sair',
                 accelerator: 'Alt+F4',
                 click: () => app.quit()
+            },
+            {
+                type: 'separator'
+            },
+        ]
+    },
+    {
+        label: 'Relatório',
+        submenu:[
+            {
+                label: 'Clientes'
             }
         ]
     },
