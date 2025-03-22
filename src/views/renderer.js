@@ -25,8 +25,8 @@ api.dbStatus((event, message) => {
     console.log(message)
 
     if (message === "conectado") {
-        document.getElementById('icone').src = "../public/img/dbon.png"
+        document.getElementById('iconeDB').src = "../public/img/dbon.png"
     } else {
-        document.getElementById('icone').src = "../public/img/dboff.png"
+        document.getElementById('iconeDB').src = "../public/img/dboff.png"
     }
 })

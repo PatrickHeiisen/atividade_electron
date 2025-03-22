@@ -15,8 +15,8 @@ const createWindow = () => {
     // definindo o tema da janela claro ou escuro
     nativeTheme.themeSource = 'light'
     win = new BrowserWindow({
-        width: 1010,
-        height: 720,
+        width: 1080,
+        height: 900,
         //frame: false,
         //resizable: false,
         //minimizable: false,
@@ -35,26 +35,39 @@ const createWindow = () => {
     win.loadFile('./src/views/index.html')
 }
 
-// Janela Sobre
+// Janela sobre
+let about
 function aboutWindow() {
-    nativeTheme.themeSource = 'light'
-    // Obter a janela principal
-    const mainwindow = BrowserWindow.getFocusedWindow()
-    // Validação (se existir a janela principal)
-    if (mainwindow) {
-        about = new BrowserWindow({
-            width: 320,
-            height: 280,
-            autoHideMenuBar: true,
-            resizable: false,
-            minimizable: false,
-            // estabelecer uma relçao hierarquica entre janelas
-            parent: mainwindow,
-            // criar uma janela modal (so retorna a principal quando encerrado)
-            modal: true
-        })
+  nativeTheme.themeSource = 'light'
+  // obter a janela principal
+  const mainWindow = BrowserWindow.getFocusedWindow()
+  // validação (se existir a janela principal)
+  if (mainWindow) {
+    about = new BrowserWindow({
+      width: 300,
+      height: 300,
+      autoHideMenuBar: true,
+      resizable: false,
+      minimizable: false,
+      //estabelecer uma relação hierarquica entre janelas
+      parent: mainWindow,
+      // criar uma janela modal (só retorna a principal quando encerrada)
+      modal: true,
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js')
+      }
+    })
+  }
+
+  about.loadFile('./src/views/sobre.html')
+
+  //recebimento da mensagem de renderização da tela sobre sobre para fechar a janela usando o botão 'OK'
+  ipcMain.on('about-exit', () => {
+    //validação (se existir a janela e ela não estiver destruida, fechada)
+    if (about && !about.isDestroyed()) {
+      about.close() //fechar a janela
     }
-    about.loadFile('./src/views/sobre.html')
+  })
 }
 
 // inicialização da aplicação (assincronismo)
@@ -103,19 +116,23 @@ app.commandLine.appendSwitch('log-level', '3')
 // template do menu
 const template = [
     {
-        label: 'Notas',
+        label: 'Cadastro',
         submenu: [
-            {
-                label: 'Criar nota',
-                accelerator: 'Ctrl+N',
-            },
-            {
-                type: 'separator'
-            },
             {
                 label: 'Sair',
                 accelerator: 'Alt+F4',
                 click: () => app.quit()
+            },
+            {
+                type: 'separator'
+            },
+        ]
+    },
+    {
+        label: 'Relatório',
+        submenu:[
+            {
+                label: 'Clientes'
             }
         ]
     },
@@ -152,7 +169,7 @@ const template = [
         submenu: [
             {
                 label: 'Repositorio',
-                click: () => shell.openExternal('https://github.com/PatrickHeiisen/sticknotes.git')
+                click: () => shell.openExternal('https://github.com/PatrickHeiisen/atividade_electron')
             },
             {
                 label: 'Sobre',
