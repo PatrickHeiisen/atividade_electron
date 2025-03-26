@@ -1,3 +1,5 @@
+const cliente = require("../models/cliente")
+
 console.log("olá, mundo")
 
 

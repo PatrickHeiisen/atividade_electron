@@ -178,3 +178,27 @@ const template = [
         ]
     }
 ]
+
+//==================================================================
+// == CRUD Create ==================================================
+
+// Recebimento do objeto que contem os dados da nota
+ipcMain.on('create-cliente', async (event, formCliente) => {
+    // IMPORTANTE  teste de recebimento do objeto (Passo 2)
+    console.log(formCliente)
+    // Criar uma nova estrutura de dados para salvar no banco
+    // atenção os atributos da estrutura precisam ser identicos ao modelo e os valores sao obtidos atraves do stickyNote
+    const newCliente = clienteModel({
+        name: formCliente.clienteName,
+        sexo: formCliente.clienteSexo,
+        cpf: formCliente.clienteCpf,
+        email: formCliente.clienteEmail,
+        telefone: formCliente.clienteTelefone,
+        endereco: formCliente.clienteEndereco
+    })
+    // Salvar a nota no banco de dados (Passo 3)
+    newCliente.save()  
+})
+
+// == Fim - CRUD Create ============================================
+//==================================================================
