@@ -16,3 +16,4 @@ const ClienteSchema = new Schema({
 },{versionKey: false});
 
 module.exports = model('Cliente', ClienteSchema);
+

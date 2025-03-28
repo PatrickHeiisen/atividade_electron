@@ -1,25 +1,25 @@
 function buscarEndereco() {
-    let cep = document.getElementById('cep').value
+    let cep = document.getElementById('inputCep').value
     let urlAPI = `https://viacep.com.br/ws/${cep}/json/`
 
     fetch(urlAPI)
         .then(response => response.json())
         .then(dados => {
-            document.getElementById('logradouro').value = dados.logradouro
-            document.getElementById('bairro').value = dados.bairro
-            document.getElementById('cidade').value = dados.localidade
-            document.getElementById('uf').value = dados.uf;
+            document.getElementById('inputLogradouro').value = dados.logradouro
+            document.getElementById('inputBairro').value = dados.bairro
+            document.getElementById('inputCidade').value = dados.localidade
+            document.getElementById('inputUf').value = dados.uf;
         })
 }
 
 function limparFormulario() {
-    document.getElementById("cadastro").reset();
+    document.getElementById("formCliente").reset();
     document.getElementById("cpfErro").style.display = "none";
     document.getElementById("mensagemSucesso").style.display = "none";
 }
 
 function validarCPF() {
-    let cpf = document.getElementById("cpf").value.replace(/\D/g, '');
+    let cpf = document.getElementById("inputCpf").value.replace(/\D/g, '');
     let cpfErro = document.getElementById("cpfErro");
 
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {

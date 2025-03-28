@@ -9,6 +9,7 @@ const { conectar, desconectar } = require('./database.js')
 
 const clienteModel = require('./src/models/cliente.js')
 
+
 // janela principal
 let win
 const createWindow = () => {
@@ -187,21 +188,21 @@ ipcMain.on('create-cliente', async (event, cadastroCliente) => {
     // IMPORTANTE  teste de recebimento do objeto (Passo 2)
     console.log(cadastroCliente)
     // Criar uma nova estrutura de dados para salvar no banco
-    // atenção os atributos da estrutura precisam ser identicos ao modelo e os valores sao obtidos atraves do stickyNote
+    // atenção os atributos da estrutura precisam ser identicos ao modelo e os valores sao obtidos
     const newCliente = clienteModel({
-        nome: cadastroCliente.clienteNome,
-        sexo: cadastroCliente.clienteSexo,
-        cpf: cadastroCliente.clienteCpf,
-        email: cadastroCliente.clienteEmail,
-        telefone: cadastroCliente.clienteTelefone,
-        endereco: cadastroCliente.clienteEndereco,
-        cep: cadastroCliente.clienteCep,
-        logradouro: cadastroCliente.clienteLogradouro,
-        numero: cadastroCliente.clienteNumero,
-        complemento: cadastroCliente.clienteComplemento,
-        bairro: cadastroCliente.clienteBairro,
-        cidade: cadastroCliente.clienteCidade,
-        uf: cadastroCliente.clienteUf
+        nome: cadastroCliente.Nome,
+        sexo: cadastroCliente.Sexo,
+        cpf: cadastroCliente.Cpf,
+        email: cadastroCliente.Email,
+        telefone: cadastroCliente.Telefone,
+        endereco: cadastroCliente.Endereco,
+        cep: cadastroCliente.Cep,
+        logradouro: cadastroCliente.Logradouro,
+        numero: cadastroCliente.Numero,
+        complemento: cadastroCliente.Complemento,
+        bairro: cadastroCliente.Bairro,
+        cidade: cadastroCliente.Cidade,
+        uf: cadastroCliente.Uf
     })
     // Salvar a nota no banco de dados (Passo 3)
     newCliente.save()  
