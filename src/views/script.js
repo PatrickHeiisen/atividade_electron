@@ -1,8 +1,3 @@
-const cliente = require("../models/cliente")
-
-console.log("olá, mundo")
-
-
 function buscarEndereco() {
     let cep = document.getElementById('cep').value
     let urlAPI = `https://viacep.com.br/ws/${cep}/json/`
@@ -15,7 +10,6 @@ function buscarEndereco() {
             document.getElementById('cidade').value = dados.localidade
             document.getElementById('uf').value = dados.uf;
         })
-        .catch(error => console.error('Erro ao buscar o endereço:', error))
 }
 
 function limparFormulario() {
@@ -57,7 +51,7 @@ function validarCPF() {
 
 function validarFormulario(event) {
     event.preventDefault();
-    let form = document.getElementById("cadastro");
+    let form = document.getElementById("formCliente");
     let inputs = form.querySelectorAll("input[required]");
     let valido = true;
 

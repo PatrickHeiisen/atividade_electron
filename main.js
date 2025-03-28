@@ -1,5 +1,3 @@
-console.log("Processo Principal")
-
 // importação dos recursos do frame work
 const { app, BrowserWindow, nativeTheme, Menu, shell, ipcMain } = require('electron/main')
 
@@ -8,6 +6,8 @@ const path = require('node:path')
 
 // Importação dos metodos conectar e desconectar (módulo de conexão)
 const { conectar, desconectar } = require('./database.js')
+
+const clienteModel = require('./src/models/cliente.js')
 
 // janela principal
 let win
@@ -183,18 +183,25 @@ const template = [
 // == CRUD Create ==================================================
 
 // Recebimento do objeto que contem os dados da nota
-ipcMain.on('create-cliente', async (event, formCliente) => {
+ipcMain.on('create-cliente', async (event, cadastroCliente) => {
     // IMPORTANTE  teste de recebimento do objeto (Passo 2)
-    console.log(formCliente)
+    console.log(cadastroCliente)
     // Criar uma nova estrutura de dados para salvar no banco
     // atenção os atributos da estrutura precisam ser identicos ao modelo e os valores sao obtidos atraves do stickyNote
     const newCliente = clienteModel({
-        name: formCliente.clienteName,
-        sexo: formCliente.clienteSexo,
-        cpf: formCliente.clienteCpf,
-        email: formCliente.clienteEmail,
-        telefone: formCliente.clienteTelefone,
-        endereco: formCliente.clienteEndereco
+        nome: cadastroCliente.clienteNome,
+        sexo: cadastroCliente.clienteSexo,
+        cpf: cadastroCliente.clienteCpf,
+        email: cadastroCliente.clienteEmail,
+        telefone: cadastroCliente.clienteTelefone,
+        endereco: cadastroCliente.clienteEndereco,
+        cep: cadastroCliente.clienteCep,
+        logradouro: cadastroCliente.clienteLogradouro,
+        numero: cadastroCliente.clienteNumero,
+        complemento: cadastroCliente.clienteComplemento,
+        bairro: cadastroCliente.clienteBairro,
+        cidade: cadastroCliente.clienteCidade,
+        uf: cadastroCliente.clienteUf
     })
     // Salvar a nota no banco de dados (Passo 3)
     newCliente.save()  

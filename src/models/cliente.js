@@ -6,15 +6,13 @@ const ClienteSchema = new Schema({
     cpf: { type: String,},
     email: { type: String,},
     telefone: { type: String},
-    endereco: {
-        cep: String,
-        logradouro: String,
-        numero: String,
-        complemento: String,
-        bairro: String,
-        cidade: String,
-        uf: String
-    }
-});
+    cep: {type: String},
+    logradouro: {type: String},
+    numero: {type: String},
+    complemento: {type: String},
+    bairro: {type: String},
+    cidade: {type: String},
+    uf: {type: String}
+},{versionKey: false});
 
 module.exports = model('Cliente', ClienteSchema);
