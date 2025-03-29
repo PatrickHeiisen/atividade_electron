@@ -32,10 +32,12 @@ api.dbStatus((event, message) => {
 })
 
 
-const foco = document.getElementById('inputNome')
+const foco = document.getElementById('searchCliente')
 
 document.addEventListener('DOMContentLoaded', () => {
-    foco.focus() //iniciar o documento com foco na caixa de texto
+    foco.focus()
+    btnUpdate.disabled = true
+    btnDelete.disabled = true
 })
 
 // capturar os dados do formulario (Passo 1: fluxo)
@@ -86,3 +88,17 @@ formCliente.addEventListener('submit', async (event) => {
 // == Fim - CRUD Create ============================================
 //==================================================================
 
+
+//==================================================================
+//== Resetar o Formulario ==========================================
+function resetForm() {
+    // recarregar a pagina
+    location.reload()
+}
+
+// Uso da api resetForm quando salvar, editar ou excluir um cliente
+api.resetForm((args) => {
+    resetForm()
+})
+
+//== Fim ===========================================================

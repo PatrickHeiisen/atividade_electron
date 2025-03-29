@@ -17,7 +17,7 @@
         <h1 class="text-center mb-4">CADASTRO DE CLIENTE</h1>
         <div class="row mb-4">
             <div class="col-md-9">
-                <input type="text" id="nome" class="form-control" required>
+                <input type="text" id="searchCliente" class="form-control" required>
             </div>
             <div class="col-md-3">
                 <button type="button" class="btn btn-primary w-200">Buscar</button>
@@ -124,9 +124,10 @@
             <!-- BOTOES -->
             <div class="col-12 py-3 rodape">
                 <div class="botao-container">
-                    <button type="submit" class="btn btn-success">ADICIONAR</button>
-                    <button type="submit" class="btn btn-warning">EDITAR</button>
-                    <button type="button" class="btn btn-danger" onclick="limparFormulario()">EXCLUIR</button>
+                    <button type="submit" class="btn btn-success" id="btnCreate">ADICIONAR</button>
+                    <button type="submit" class="btn btn-warning"  id="btnUpdate">EDITAR</button>
+                    <button type="button" class="btn btn-danger" onclick="limparFormulario()" id="btnDelete">EXCLUIR</button>
+                    <button type="reset" class="btn btn-primary" onclick="resetForm()" id="btnReset"></button>
                 </div>
             </div>
             <div id="mensagemSucesso" class="text-success text-center mt-3" style="display: none;">Cadastro realizado

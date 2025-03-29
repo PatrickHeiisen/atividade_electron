@@ -70,3 +70,4 @@ function validarFormulario(event) {
         form.reset();
     }
 }
+
